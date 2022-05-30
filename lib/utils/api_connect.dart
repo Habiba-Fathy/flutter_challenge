@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_challenge/models/data_model.dart';
+import 'package:flutter_challenge/utils/vars.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiProvider {
@@ -26,5 +28,23 @@ class ApiProvider {
   };
 
 ///////////////////////////////////////////////////////////////////
-
+  Future<DataModel> getData() async {
+    final response = await _dio.get(
+      Connection.url,
+      options: Options(
+        headers: {
+          ..._apiHeaders,
+        },
+      ),
+    );
+    if (_validResponse(response.statusCode!)) {
+      return DataModel.fromMap(response.data);
+    } else {
+      throw response.data;
+    }
+  }
 }
+
+////////////////////////////////// UTILS ///////////////////////////////////////
+// Validating Request.
+bool _validResponse(int statusCode) => statusCode >= 200 && statusCode < 300;
