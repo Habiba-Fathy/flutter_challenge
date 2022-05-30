@@ -7,7 +7,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: [],
+        children: [
+          Container(
+            height: 240,
+            width: double.infinity,
+          ),
+        ],
       ),
     );
   }
