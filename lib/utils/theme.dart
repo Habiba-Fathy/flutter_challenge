@@ -6,7 +6,7 @@ class AppTheme {
     primaryColor: const Color(0xFF7A348D),
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
-    fontFamily: 'DroidKufi',
+    fontFamily: 'Cairo',
     textTheme: const TextTheme(
       headline1: TextStyle(
         color: Color(0xFFC0C1CD),
