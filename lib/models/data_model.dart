@@ -50,13 +50,10 @@ class DataModel {
   DataModel.fromMap(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    images = json['images'];
-    if (json["images"] != null) {
+    if (json["img"] != null) {
       images = [];
-      json["images"].forEach(
-        (element) => images!.add(
-          element,
-        ),
+      json["img"].forEach(
+        (element) => images!.add(element),
       );
     }
     interest = json['interest'];
