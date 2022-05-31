@@ -6,6 +6,7 @@ import 'package:flutter_challenge/providers/app_provider.dart';
 import 'package:flutter_challenge/widgets/loading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     if (data.images != null && data.images!.isNotEmpty)
                       CarouselSlider(
                         options: CarouselOptions(
-                          height: MediaQuery.of(context).size.width / 1.5,
+                          height: (MediaQuery.of(context).size.width / 1.5),
                           viewportFraction: 1,
                           initialPage: 0,
                           enableInfiniteScroll: true,
@@ -74,12 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                               ),
-                              placeholder: (context, url) =>
-                                  const LoadingWidget(
-                                size: 64,
+                              placeholder: (context, url) => LoadingWidget(
+                                size: 64.sp,
                               ),
                               errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
+                                  Icon(Icons.error, size: 24.sp),
                             ),
                           ),
                         ],
@@ -88,32 +88,34 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: MediaQuery.of(context).size.width / 1.5,
                       child: Column(
                         children: [
-                          const SizedBox(height: 40),
+                          SizedBox(height: 30.sp),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            padding: EdgeInsets.symmetric(horizontal: 10.0.sp),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 IconButton(
+                                  iconSize: 18.sp,
                                   icon: Icon(
                                     Icons.arrow_back_ios,
                                     color: Theme.of(context).shadowColor,
-                                    size: 18,
+                                    // size: 18.sp,
                                   ),
                                   onPressed: () {},
                                 ),
                                 Row(
                                   children: [
                                     IconButton(
+                                      iconSize: 20.sp,
                                       icon: Icon(
                                         Icons.share,
                                         color: Theme.of(context).shadowColor,
-                                        size: 22,
+                                        // size: 22.sp,
                                       ),
                                       onPressed: () {},
                                     ),
                                     IconButton(
+                                      iconSize: 20.sp,
                                       icon: Icon(
                                         (data.isLiked ?? false) || liked
                                             ? Icons.star
@@ -121,7 +123,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: (data.isLiked ?? false) || liked
                                             ? Colors.amber
                                             : Theme.of(context).shadowColor,
-                                        size: 22,
                                       ),
                                       onPressed: () {
                                         liked = !liked;
@@ -137,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           if (data.images != null && data.images!.isNotEmpty)
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                                  EdgeInsets.symmetric(horizontal: 16.0.sp),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -146,10 +147,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     mainAxisSize: MainAxisSize.max,
                                     position: _indicatorIndex.toDouble(),
                                     decorator: DotsDecorator(
-                                      spacing: const EdgeInsets.symmetric(
-                                          horizontal: 2.0),
-                                      size: const Size(8, 8),
-                                      activeSize: const Size(12, 12),
+                                      spacing: EdgeInsets.symmetric(
+                                          horizontal: 2.0.sp),
+                                      size: Size(7.sp, 7.sp),
+                                      activeSize: Size(10.sp, 10.sp),
                                       color: Theme.of(context)
                                           .shadowColor
                                           .withOpacity(0.5), // Inactive color
@@ -160,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                             ),
-                          const SizedBox(height: 40),
+                          SizedBox(height: 30.sp),
                         ],
                       ),
                     ),
@@ -171,10 +172,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          padding: EdgeInsets.symmetric(horizontal: 16.0.sp),
                           child: Column(
                             children: [
-                              const SizedBox(height: 14),
+                              SizedBox(height: 10.sp),
                               Row(
                                 children: [
                                   Text(
@@ -183,13 +184,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w400,
                                         ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 2.sp),
                               Row(
                                 children: [
                                   Text(
@@ -198,21 +199,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline3
                                         ?.copyWith(
-                                          fontSize: 16,
+                                          fontSize: 14.sp,
                                           fontWeight: FontWeight.w700,
                                         ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 2.sp),
                               Row(
                                 children: [
                                   Icon(
                                     Icons.calendar_today_outlined,
                                     color: Theme.of(context).shadowColor,
-                                    size: 16,
+                                    size: 14.sp,
                                   ),
-                                  const SizedBox(width: 4),
+                                  SizedBox(width: 4.sp),
                                   Text(
                                     DateFormat('EEEE, dd MMMM, HH:mm a ', 'ar')
                                         .format(
@@ -224,28 +225,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w400,
                                         ),
                                   )
                                 ],
                               ),
-                              const SizedBox(height: 6),
+                              SizedBox(height: 4.sp),
                               Row(
                                 children: [
                                   SvgPicture.asset(
                                     'assets/svg/pin-svgrepo-com.svg',
                                     color: Theme.of(context).shadowColor,
-                                    height: 20,
+                                    height: 18.sp,
                                   ),
-                                  const SizedBox(width: 4),
+                                  SizedBox(width: 4.sp),
                                   Text(
                                     '${data.address}',
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w400,
                                         ),
                                   ),
@@ -258,13 +259,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Theme.of(context).shadowColor,
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          padding: EdgeInsets.symmetric(horizontal: 16.0.sp),
                           child: Column(
                             children: [
+                              SizedBox(height: 2.sp),
                               Row(
                                 children: [
                                   CircleAvatar(
-                                    radius: 15,
+                                    radius: 14.sp,
                                     child: CachedNetworkImage(
                                       imageUrl: data.trainerImg ?? '',
                                       // height: 240,
@@ -279,27 +281,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       ),
                                       placeholder: (context, url) =>
-                                          const LoadingWidget(
-                                        size: 30,
+                                          LoadingWidget(
+                                        size: 30.sp,
                                       ),
                                       errorWidget: (context, url, error) =>
-                                          const Icon(Icons.person),
+                                          Icon(
+                                        Icons.person,
+                                        size: 22.sp,
+                                      ),
                                     ),
                                   ),
-                                  const SizedBox(width: 10),
+                                  SizedBox(width: 10.sp),
                                   Text(
                                     '${data.trainerName}',
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 14,
+                                          fontSize: 12.sp,
                                           fontWeight: FontWeight.w700,
                                         ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 2.sp),
                               Row(
                                 children: [
                                   Expanded(
@@ -309,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           .textTheme
                                           .headline1
                                           ?.copyWith(
-                                            fontSize: 12,
+                                            fontSize: 10.sp,
                                             fontWeight: FontWeight.w500,
                                           ),
                                       textAlign: TextAlign.start,
@@ -324,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Theme.of(context).shadowColor,
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          padding: EdgeInsets.symmetric(horizontal: 16.0.sp),
                           child: Column(
                             children: [
                               Row(
@@ -335,13 +340,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w700,
                                         ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 2.sp),
                               Row(
                                 children: [
                                   Expanded(
@@ -351,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           .textTheme
                                           .headline1
                                           ?.copyWith(
-                                            fontSize: 12,
+                                            fontSize: 10.sp,
                                             fontWeight: FontWeight.w500,
                                           ),
                                       textAlign: TextAlign.start,
@@ -366,7 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Theme.of(context).shadowColor,
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          padding: EdgeInsets.symmetric(horizontal: 16.0.sp),
                           child: Column(
                             children: [
                               Row(
@@ -377,13 +382,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w700,
                                         ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 2.sp),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -394,7 +399,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w500,
                                         ),
                                     textAlign: TextAlign.start,
@@ -405,14 +410,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w500,
                                         ),
                                     textAlign: TextAlign.start,
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 2.sp),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -423,7 +428,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w500,
                                         ),
                                     textAlign: TextAlign.start,
@@ -434,14 +439,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w500,
                                         ),
                                     textAlign: TextAlign.start,
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 2.sp),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -452,7 +457,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w500,
                                         ),
                                     textAlign: TextAlign.start,
@@ -463,7 +468,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headline1
                                         ?.copyWith(
-                                          fontSize: 12,
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w500,
                                         ),
                                     textAlign: TextAlign.start,
@@ -473,7 +478,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 15.sp),
                       ],
                     ),
                   ),
@@ -482,7 +487,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {},
                   child: Container(
                     width: double.infinity,
-                    height: 60,
+                    height: 50.sp,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Theme.of(context).primaryColor,
@@ -490,7 +495,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       'قم بالحجز الآن',
                       style: Theme.of(context).textTheme.headline2?.copyWith(
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w700,
                           ),
                     ),
