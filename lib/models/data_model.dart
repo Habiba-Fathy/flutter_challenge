@@ -47,5 +47,42 @@ class DataModel {
     this.reserveTypes,
   });
 
-  DataModel.fromMap(Map<String, dynamic> json) {}
+  DataModel.fromMap(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    images = json['images'];
+    if (json["images"] != null) {
+      images = [];
+      json["images"].forEach(
+        (element) => images!.add(
+          element,
+        ),
+      );
+    }
+    interest = json['interest'];
+    price = json['price'];
+    date = json['date'];
+    address = json['address'];
+    trainerName = json['trainerName'];
+    trainerImg = json['trainerImg'];
+    trainerInfo = json['trainerInfo'];
+    occasionDetail = json['occasionDetail'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
+    isLiked = json['isLiked'];
+    isSold = json['isSold'];
+    isPrivateEvent = json['isPrivateEvent'];
+    hiddenCashPayment = json['hiddenCashPayment'];
+    specialForm = json['specialForm'];
+    questionnaire = json['questionnaire'];
+    quesExplanation = json['questExplanation'];
+    if (json["reservTypes"] != null) {
+      reserveTypes = [];
+      json["reservTypes"].forEach(
+        (element) => reserveTypes!.add(
+          ReserveTypeModel.fromMap(element),
+        ),
+      );
+    }
+  }
 }

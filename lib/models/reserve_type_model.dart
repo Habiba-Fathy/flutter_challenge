@@ -11,5 +11,10 @@ class ReserveTypeModel {
     this.price,
   });
 
-  ReserveTypeModel.fromMap(Map<String, dynamic> json) {}
+  ReserveTypeModel.fromMap(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    count = json['count'];
+    price = json['price'];
+  }
 }
