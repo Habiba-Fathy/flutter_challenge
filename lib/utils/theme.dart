@@ -8,14 +8,15 @@ class AppTheme {
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     fontFamily: 'Cairo',
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
       headline1: TextStyle(
-        color: Color(0xFFC0C1CD),
+        // color: Color(0xFFC0C1CD),
+        color: Colors.grey[400],
       ),
-      headline2: TextStyle(
+      headline2: const TextStyle(
         color: Color(0xFFFFFFFF),
       ),
-      headline3: TextStyle(
+      headline3: const TextStyle(
         color: Color(0xFF9E9EAE),
       ),
     ),
