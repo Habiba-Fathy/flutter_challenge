@@ -7,6 +7,7 @@ import 'package:flutter_challenge/widgets/loading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+import 'package:map_launcher/map_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,6 +19,73 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _indicatorIndex = 0;
   bool liked = false;
+
+  goToMap() async {
+    final availableMaps = await MapLauncher.installedMaps;
+    final data = context.read<AppProvider>().data;
+
+    if (data?.latitude != null &&
+        data!.latitude!.isNotEmpty &&
+        data.longitude != null &&
+        data.longitude!.isNotEmpty) {
+      // if (await MapLauncher.isMapAvailable(MapType.google) ?? false) {
+      //   await MapLauncher.showMarker(
+      //     mapType: MapType.google,
+      //     coords: Coords(
+      //         double.parse(data.latitude!), double.parse(data.longitude!)),
+      //     title: "Location",
+      //     // description: description,
+      //   );
+      // }
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Wrap(
+                children: <Widget>[
+                  for (var map in availableMaps)
+                    ListTile(
+                      onTap: () {
+                        Navigator.pop(context);
+                        map.showMarker(
+                          coords: Coords(double.parse(data.latitude!),
+                              double.parse(data.longitude!)),
+                          title: "Location",
+                        );
+                      },
+                      minVerticalPadding: 4.sp,
+                      title: Text(
+                        map.mapName,
+                        style: Theme.of(context).textTheme.headline3?.copyWith(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                      ),
+                      leading: SvgPicture.asset(
+                        map.icon,
+                        height: 35.0.sp,
+                        width: 35.0.sp,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Couldn't find the location",
+            textAlign: TextAlign.center,
+          ),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
+  }
 
   @override
   void initState() {
@@ -232,25 +300,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                               SizedBox(height: 4.sp),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/svg/pin-svgrepo-com.svg',
-                                    color: Theme.of(context).shadowColor,
-                                    height: 18.sp,
-                                  ),
-                                  SizedBox(width: 4.sp),
-                                  Text(
-                                    '${data.address}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                  ),
-                                ],
+                              InkWell(
+                                onTap: goToMap,
+                                child: Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      'assets/svg/pin-svgrepo-com.svg',
+                                      color: Theme.of(context).shadowColor,
+                                      height: 18.sp,
+                                    ),
+                                    SizedBox(width: 4.sp),
+                                    Text(
+                                      '${data.address}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1
+                                          ?.copyWith(
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
