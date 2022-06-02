@@ -441,114 +441,82 @@ class _HomeScreenState extends State<HomeScreen> {
                         Divider(
                           color: Theme.of(context).shadowColor,
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.0.sp),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'تكلفة الدورة',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w700,
-                                        ),
+                        if (data.reserveTypes != null &&
+                            data.reserveTypes!.isNotEmpty)
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16.0.sp),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'تكلفة الدورة',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline1
+                                          ?.copyWith(
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 2.sp),
+                                ...data.reserveTypes!.map(
+                                  (e) => Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            '${e.name}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1
+                                                ?.copyWith(
+                                                  fontSize: 10.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                '${e.price} ',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline1
+                                                    ?.copyWith(
+                                                      fontSize: 10.sp,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                textAlign: TextAlign.start,
+                                              ),
+                                              Text(
+                                                'SAR',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline1
+                                                    ?.copyWith(
+                                                      fontSize: 10.sp,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                textAlign: TextAlign.start,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 2.sp),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              SizedBox(height: 2.sp),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'الحجز العادي',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                  Text(
-                                    'SAR',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 2.sp),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'الحجز المميز',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                  Text(
-                                    'SAR',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 2.sp),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'الحجز السريع',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                  Text(
-                                    'SAR',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
-                                        ?.copyWith(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ],
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
                         SizedBox(height: 15.sp),
                       ],
                     ),
